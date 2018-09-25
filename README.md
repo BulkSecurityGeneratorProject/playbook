@@ -8,3 +8,4 @@ Proyecto de pruebas para Spring y otras tecnologias
    - Hace la clase muy dependiente y acoplada a Spring, ya que la responsabilidad de gestionar las dependencias ya no es de la clase sino        del contenedor de Spring.
    - Permite tener fácilmente muchas dependencias que reflejan un incumplimiento del principio de responsabilidad unica, que el caso de          inyección por constructor llamaría enseguida la atención
    - Hace que la clase no sea responsable de sus dependencias, ni tampoco las refleja al exterior mediante su constructor o setters.
+   - No se pueden asignar dependencias a campos final, por lo que la clase no puede ser inmutable.
