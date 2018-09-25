@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.playbook</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>back</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>playbook-back</name>
-	<description>Aplicacion para pruebas (back-end)</description>
+	<description>Proyecto de pruebas para Spring (back-end)</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

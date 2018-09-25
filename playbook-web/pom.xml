@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.playbook</groupId>
-	<artifactId>playbook-web</artifactId>
+	<artifactId>web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>playbook-web</name>
-	<description>Proyecto de pruebas para Spring (parte web)</description>
+		<description>Proyecto de pruebas para Spring (parte web)</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -37,6 +37,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.playbook</groupId>
+			<artifactId>back</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
