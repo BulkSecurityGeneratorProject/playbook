@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PlaybookBackApplication {
+public class PlaybookRestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PlaybookBackApplication.class, args);
+		SpringApplication.run(PlaybookRestApplication.class, args);
 	}
 }

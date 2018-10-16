@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="common_header(title,links)">
+    <title th:replace="${title}">Playbook</title>
+    <!-- Common styles and scripts -->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/css/business-casual.css}" rel="stylesheet">
+    <script th:src="@{/js/jquery-1.10.2.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+
+    <!--/* Per-page placeholder for additional links */-->
+    <!-- <th:block th:replace="${links}" /> -->
+</head>
+
+<div th:fragment="titulo" class="brand" th:text="#{home.titulo}"></div>
+
+<div th:fragment="navbar-header" class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="index.html">Business Casual</a>
+</div>
+
+<footer th:fragment="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <p>Copyright &copy; José González Sánchez</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

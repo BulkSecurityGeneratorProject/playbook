@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments :: common_header(~{::title},~{::link})">
-    <title>Playbook</title>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title th:replace="fragments/common :: ventana">Playbook</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="css/business-casual.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <div th:replace="fragments :: titulo" />
+    <div class="brand">Playbook</div>
 
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
-            <div th:replace="fragments :: navbar-header" class="navbar-header"/>
+            <div th:replace="fragments/common :: navbar-header" class="navbar-header"/>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/juegos">Juegos</a>
+                    <li><a href="index.html"></a>
                     </li>
-                    <li><a href="/users">Usuarios</a>
+                    <li><a href="about.html">Usuarios</a>
                     </li>
                     <li><a href="blog.html">Blog</a>
                     </li>
@@ -97,9 +109,11 @@
     </div>
     <!-- /.container -->
 
-    <footer th:replace="fragments :: footer"></footer>
+    <footer th:replace="fragments/common :: footer"></footer>
 
     <!-- JavaScript -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script>
     // Activates the Carousel
     $('.carousel').carousel({

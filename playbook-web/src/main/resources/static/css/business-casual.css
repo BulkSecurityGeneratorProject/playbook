@@ -129,39 +129,39 @@ footer p {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.navbar {
-  border-radius: 0;
-}
+  .navbar {
+    border-radius: 0;
+  }
 
-.navbar-header {
-  display: none;
-}
+  .navbar-header {
+    display: none;
+  }
 
-.navbar {
-  min-height: 0;
-}
+  .navbar {
+    min-height: 0;
+  }
 
-.navbar-default {
-  background: #fff;
-  background: rgba(255,255,255,0.9);
-  border: none;
-}
+  .navbar-default {
+    background: #fff;
+    background: rgba(255,255,255,0.9);
+    border: none;
+  }
 
-.nav>li>a {
-  padding: 35px;
-}
+  .nav>li>a, .nav>li>div>a, .nav>li>div>div>a{
+    padding: 35px;
+  }
 
-.navbar-nav>li>a {
-  line-height: normal;
-}
+  .navbar-nav>li>a, .navbar-nav>li>div>a, .navbar-nav>li>div>div>a {
+    line-height: normal;
+  }
 
-.navbar-nav {
-  float: none;
-  margin: 0 auto;
-  display: table;
-  table-layout: fixed;
-  font-size: 1.25em;
-}
+  .navbar-nav {
+    float: none;
+    margin: 0 auto;
+    display: table;
+    table-layout: fixed;
+    font-size: 1.25em;
+  }
 
 }
 

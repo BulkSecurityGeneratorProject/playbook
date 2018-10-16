@@ -1,0 +1,45 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+  <changeSet author="Jose Gonzalez" id="201811101727">
+    <createTable tableName="boardgames">
+      <column name="game_id" type="BIGINT" autoIncrement="true">
+        <constraints nullable="false" primaryKey="true" unique="true"/>
+      </column>
+      <column name="nombre" type="VARCHAR(255)">
+        <constraints nullable="false" unique="true"/>
+      </column>
+      <column name="imagen" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="thumbnail" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="min_players" type="INTEGER">
+        <constraints nullable="false"/>
+      </column>
+      <column name="max_players" type="INTEGER">
+        <constraints nullable="false"/>
+      </column>
+      <column name="duracion" type="INTEGER">
+        <constraints nullable="false"/>
+      </column>
+      <column name="puntuacion" type="FLOAT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="descripcion" type="VARCHAR(3000)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="publicacion" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="designer" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="votos" type="FLOAT">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>
