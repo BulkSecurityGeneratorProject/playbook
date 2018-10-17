@@ -1,14 +1,16 @@
 package com.playbook.game.exceptions;
 
+import lombok.Getter;
+
 import java.io.Serializable;
 import java.util.List;
 
+@Getter
 public class ApiError implements Serializable {
 
     private final Integer status;
     private final String mensaje;
     private final String excepcion;
-    private final String error;
     private final List<FieldErrorVM> fieldErrors;
 
     private ApiError(ApiErrorBuilder builder) {
@@ -16,7 +18,6 @@ public class ApiError implements Serializable {
         this.mensaje = builder.mensaje;
         this.excepcion = builder.excepcion;
         this.fieldErrors = builder.fieldErrors;
-        this.error = builder.error;
     }
 
     // Builder para el error
@@ -26,7 +27,6 @@ public class ApiError implements Serializable {
         private String mensaje;
         private String excepcion;
         private List<FieldErrorVM> fieldErrors;
-        private String error;
 
         public ApiErrorBuilder withStatus(Integer status){
             this.status = status;
@@ -45,11 +45,6 @@ public class ApiError implements Serializable {
 
         public ApiErrorBuilder withErrors(List<FieldErrorVM> errors){
             this.fieldErrors = errors;
-            return this;
-        }
-
-        public ApiErrorBuilder withError(String error){
-            this.error = error;
             return this;
         }
 

@@ -1,6 +1,7 @@
 package com.playbook.game;
 
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
+@Component
 public class BoardGameDTO implements Serializable{
 
 
