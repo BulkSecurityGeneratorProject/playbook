@@ -1,4 +1,4 @@
-dni,nombre,apellidos,role
-02785463W,Juan,Martinez Guzman,JUGADOR
-03784762U,Lucia,Ramos Sanz,JUGADOR
-12345678M,Jose,Garcia Gil,ADMIN
+dni,nombre,apellidos,email,role
+02785463W,Juan,Martinez Guzman,juan@gmail.com,JUGADOR
+03784762U,Lucia,Ramos Sanz,lucia@gmail.com,JUGADOR
+12345678M,Jose,Garcia Gil,jose@gmail.com,ADMIN

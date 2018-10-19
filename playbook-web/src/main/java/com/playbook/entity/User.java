@@ -11,13 +11,16 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     @Id
-    private Long dni;
+    private String dni;
 
     @Column(nullable = false)
     private String nombre;
 
     @Column(nullable = false)
     private String apellidos;
+
+    @Column(nullable = false)
+    private String email;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)

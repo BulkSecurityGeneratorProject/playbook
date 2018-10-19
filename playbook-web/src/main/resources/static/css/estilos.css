@@ -1,0 +1,7 @@
+.fondo {
+    background-image: url('/img/collection.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center;
+    background-size: cover;
+}

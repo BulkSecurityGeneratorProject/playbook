@@ -13,6 +13,9 @@
       <column name="apellidos" type="VARCHAR(255)">
         <constraints nullable="false"/>
       </column>
+      <column name="email" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
       <column name="role" type="VARCHAR(255)">
         <constraints nullable="false"/>
       </column>

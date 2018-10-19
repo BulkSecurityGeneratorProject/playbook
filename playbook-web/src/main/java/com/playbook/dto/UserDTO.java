@@ -2,20 +2,25 @@ package com.playbook.dto;
 
 import com.playbook.entity.Role;
 import lombok.Data;
+
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
 public class UserDTO {
 
     @NotNull
-    private Long dni;
+    private String dni;
 
-    @NotNull
+    @NotEmpty
     private String nombre;
 
-    @NotNull
+    @NotEmpty
     private String apellidos;
 
-    @NotNull
+    @NotEmpty
+    private String email;
+
+    @NotEmpty
     private Role role;
 }

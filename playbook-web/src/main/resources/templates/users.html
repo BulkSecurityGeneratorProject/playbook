@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <head th:insert="fragments :: common_header(~{}, ~{})">
+    </head>
+
+    <body class="fondo">
+        <nav th:replace="fragments :: navbar"></nav>
+
+        <div class="container py-5 my-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="usuariosTabla" class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>Dni</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="user, rowStat: ${users}"
+                            th:class="${rowStat.odd} ? 'table-warning' : 'table-light'">
+                            <td th:text="${user.dni}"></td>
+                            <td th:text="${user.nombre}"></td>
+                            <td th:text="${user.apellidos}"></td>
+                            <td th:text="${user.email}"></td>
+                            <td th:text="${user.role}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--/col-->
+            </div>
+            <!--/row-->
+        </div>
+        <!--/container-->
+        <!-- Footer -->
+        <footer th:replace="fragments :: footer"></footer>
+    </body>
+</html>
