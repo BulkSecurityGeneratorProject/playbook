@@ -1,4 +1,4 @@
-package com.playbook.service.impl;
+package com.playbook.service;
 
 import com.playbook.dto.UserDTO;
 

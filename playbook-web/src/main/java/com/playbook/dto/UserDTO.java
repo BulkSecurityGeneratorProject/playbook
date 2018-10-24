@@ -1,10 +1,20 @@
 package com.playbook.dto;
 
-import com.playbook.entity.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.playbook.entity.Authority;
 import lombok.Data;
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.*;
+import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 public class UserDTO {
@@ -12,15 +22,30 @@ public class UserDTO {
     @NotNull
     private String dni;
 
+    @NotNull
+    @Pattern(regexp = "^[_'.@A-Za-z0-9-]*$")
+    @Size(min = 1, max = 100)
+    private String login;
+
+    @NotNull
+    @JsonIgnore // Indicamos que se omita esta campo en la serializacion
+    @Size(min = 60, max = 60)
+    private String password;
+
     @NotEmpty
+    @Size(max = 50)
     private String nombre;
 
     @NotEmpty
     private String apellidos;
 
-    @NotEmpty
+    @Email
+    @Size(min = 5, max = 100)
     private String email;
 
-    @NotEmpty
-    private Role role;
+    @NotNull
+    private boolean activated = false;
+
+    @JsonIgnore
+    private Set<Authority> authorities = new HashSet<>();
 }

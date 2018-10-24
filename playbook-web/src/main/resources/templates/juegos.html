@@ -1,126 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title th:replace="fragments/common :: ventana">Playbook</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-
-    <!-- Add custom CSS here -->
-    <link href="css/business-casual.css" rel="stylesheet">
+<head th:insert="fragments :: common_header(~{}, ~{})">
 </head>
 
-<body>
+<body class="fondo">
+<header th:replace="fragments :: navbar"></header>
 
-    <div class="brand">Playbook</div>
-
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <div th:replace="fragments/common :: navbar-header" class="navbar-header"/>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="index.html"></a>
-                    </li>
-                    <li><a href="about.html">Usuarios</a>
-                    </li>
-                    <li><a href="blog.html">Blog</a>
-                    </li>
-                    <li><a href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+<div class="container py-5 my-5">
+    <div class="row">
+        <div class="col-md-12">
+            <table id="juegosTabla" class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Dni</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user, rowStat: ${users}"
+                    th:class="${rowStat.odd} ? 'table-warning' : 'table-light'">
+                    <td th:text="${user.dni}"></td>
+                    <td th:text="${user.nombre}"></td>
+                    <td th:text="${user.apellidos}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.role}"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <!-- /.container -->
-    </nav>
-
-    <div class="container">
-
-        <div class="row">
-            <div class="box">
-                <div class="col-lg-12 text-center">
-                    <div id="carousel-example-generic" class="carousel slide">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators hidden-xs">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img class="img-responsive img-full" src="img/agricola.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img class="img-responsive img-full" src="img/puertorico.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img class="img-responsive img-full" src="img/power.jpg" alt="">
-                            </div>
-                        </div>
-
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                            <span class="icon-prev"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                            <span class="icon-next"></span>
-                        </a>
-                    </div>
-                    <h2>
-                        <small>Bienvenido a</small>
-                    </h2>
-                    <h1>
-                        <span class="brand-name">Playbook</span>
-                    </h1>
-                    <hr class="tagline-divider">
-                    <h2>
-                        <small>La pagina de los juegos de mesa</small>
-                    </h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="box">
-                <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">La razón de este proyecto
-                    </h2>
-                    <hr>
-                    <img class="img-responsive img-border img-left" height="140" width="245" src="img/meeple.jpg" alt="">
-                    <hr class="visible-xs">
-                    <p>La razón de ser de este proyecto es servir de banco de pruebas para distintas tecnología. Como dice el antiguo proverbio chino, "Lo que oigo, lo olvido; lo que veo, lo recuerdo; lo que hago, lo aprendo".</p>
-                    <p>En principio servirá para practicar y aprender los distintos módulos de Spring, pero sin olvidar cualquier otro tipo de tecnología digno de experimentar como contenedores, tecnologías front-end, API Rest o CI, según las necesidades o el interés.</p>
-                </div>
-            </div>
-        </div>
-
+        <!--/col-->
     </div>
-    <!-- /.container -->
-
-    <footer th:replace="fragments/common :: footer"></footer>
-
-    <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script>
-    // Activates the Carousel
-    $('.carousel').carousel({
-        interval: 5000
-    })
-    </script>
-
+    <!--/row-->
+</div>
+<!--/container-->
+<!-- Footer -->
+<footer th:replace="fragments :: footer"></footer>
 </body>
-
 </html>

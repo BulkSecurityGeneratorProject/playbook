@@ -18,11 +18,20 @@ public class LoginController {
     private String mensajeError;
 
     @RequestMapping(value = "/login")
-    public String login(Model model, Principal principal, RedirectAttributes flash){
+    public String login(Model model, Principal principal, RedirectAttributes flash,
+                        @RequestParam(value = "error", required = false)String error,
+                        @RequestParam(name = "logout", required = false) String logout){
         log.debug("Login");
         // Con esto detectamos si ya se ha hecho login y evitamos el doble login
         if(principal != null){
             flash.addFlashAttribute("info", "El usuario ya ha iniciado sesion");
+            return "redirect:/";
+        }
+        if(error != null){
+            model.addAttribute("error", "Nombre de usuario o contraseña incorrectos");
+        }
+        if(logout != null) {
+            model.addAttribute("success", "Sesión cerrada correctamente!");
             return "redirect:/";
         }
         return "login";

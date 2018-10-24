@@ -1,0 +1,82 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+  <property name="now" value="now()" dbms="mysql"/>
+
+  <changeSet author="Jose Gonzalez" id="201809192329">
+    <createTable tableName="users">
+      <column name="dni" type="VARCHAR(255)">
+        <constraints nullable="false" primaryKey="true" unique="true"/>
+      </column>
+      <column name="login" type="VARCHAR(100)">
+        <constraints unique="true" nullable="false"/>
+      </column>
+      <column name="password_hash" type="VARCHAR(60)"/>
+      <column name="nombre" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="apellidos" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="email" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="activated" type="boolean" valueBoolean="false">
+        <constraints nullable="false" />
+      </column>
+      <column name="created_date" type="timestamp" defaultValueDate="${now}">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <createTable tableName="authority">
+      <column name="name" type="varchar(50)">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+    </createTable>
+
+    <createTable tableName="user_authority">
+      <column name="user_id" type="varchar(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="authority_name" type="varchar(50)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+
+    <addPrimaryKey columnNames="user_id, authority_name" tableName="user_authority"/>
+
+    <addForeignKeyConstraint baseColumnNames="authority_name"
+                             baseTableName="user_authority"
+                             constraintName="fk_authority_name"
+                             referencedColumnNames="name"
+                             referencedTableName="authority"/>
+    <addForeignKeyConstraint baseColumnNames="user_id"
+                             baseTableName="user_authority"
+                             constraintName="fk_user_id"
+                             referencedColumnNames="dni"
+                             referencedTableName="users"/>
+    <loadData encoding="UTF-8"
+              file="users.csv"
+              separator=";"
+              tableName="users"
+              relativeToChangelogFile="true">
+      <column name="activated" type="boolean"/>
+      <column name="created_date" type="timestamp"/>
+    </loadData>
+    <dropDefaultValue tableName="users" columnName="created_date" columnDataType="datetime"/>
+    <loadData encoding="UTF-8"
+              file="authorities.csv"
+              separator=";"
+              tableName="authority"
+              relativeToChangelogFile="true"/>
+
+    <loadData encoding="UTF-8"
+              file="users_authorities.csv"
+              separator=";"
+              tableName="user_authority"
+              relativeToChangelogFile="true"/>
+  </changeSet>
+</databaseChangeLog>

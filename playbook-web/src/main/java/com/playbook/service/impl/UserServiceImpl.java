@@ -3,6 +3,7 @@ package com.playbook.service.impl;
 import com.playbook.dto.UserDTO;
 import com.playbook.mapper.UserMapper;
 import com.playbook.repository.UserRepository;
+import com.playbook.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
 
