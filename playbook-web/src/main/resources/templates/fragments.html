@@ -58,6 +58,21 @@
                             </div>
                         </li>
                     </ul>
+                    <ul class="navbar-nav navbar-right mx-4">
+                        <li class="nav-item dropdown show mx-2"><a
+                                class="btn btn-outline-success dropdown-toggle" href="#"
+                                role="button" id="dropdownLenguaje" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><span
+                                th:text="#{text.locale.language}"></span></a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" th:href="@{/locale(lang=es_ES)}"
+                                   th:text="#{text.locale.es}">ES</a>
+                                <a class="dropdown-item" th:href="@{/locale(lang=en_US)}"
+                                   th:text="#{text.locale.en}">EN</a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -72,7 +87,7 @@
     </header>
 
 </body>
-<footer class="py-3 bg-dark fixed-bottom">
+<footer class="py-3 bg-dark">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; José González Sánchez 2018</p>
     </div>

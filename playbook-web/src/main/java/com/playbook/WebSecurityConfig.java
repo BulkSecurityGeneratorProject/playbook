@@ -4,6 +4,7 @@ import com.playbook.security.CustomAccessDeniedHandler;
 import com.playbook.security.CustomAuthenticationFailureHandler;
 import com.playbook.security.CustomLoginSuccessHandler;
 import com.playbook.security.CustomLogoutSuccessHandler;
+import com.playbook.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,13 +30,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    private LoginService loginService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers("/static/**").permitAll()
                 .antMatchers("/css/**", "/vendor/**", "/js/**", "/img/**").permitAll()
-                .antMatchers("/", "/index", "/login", "/h2-console/**").permitAll()
+                .antMatchers("/", "/index", "/login", "/locale").permitAll()
                // .antMatchers("/usuarios/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().formLogin().successHandler(loginSuccessHandler()).loginPage("/login").permitAll()
@@ -48,6 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        /* Autenticacion con usuarios en memoria
         auth
                 .inMemoryAuthentication()
                 .withUser("user")
@@ -57,6 +62,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("admin")
                 .password("admin")
                 .roles("USER", "ADMIN");
+         */
+        // Autenticacion con usuarios mediante base de datos y usando UserDetailService
+        auth.userDetailsService(loginService)
+                .passwordEncoder(passwordEncoder)
+                .getUserDetailsService();
     }
 
     @SuppressWarnings("deprecation")
