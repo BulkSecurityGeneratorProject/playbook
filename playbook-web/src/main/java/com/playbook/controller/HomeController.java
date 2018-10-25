@@ -14,11 +14,8 @@ import java.util.Optional;
 @Controller
 public class HomeController {
 
-    private static final Logger log = LoggerFactory.getLogger(HomeController.class);
-
     @GetMapping("/")
     public String home(){
-        log.debug("Entramos en la pagina inicial");
         return ("index");
     }
 
