@@ -8,12 +8,11 @@
     <body class="fondo">
         <header th:replace="fragments :: navbar"></header>
 
-        <div class="card bg-danger text-white">
-            <div class="card-header tex-center">Página no encontrada</div>
-            <div class="card-body text-center">
-                <h5 class="card-title">
-                    Los sentimos <span th:text="${#authentication.name}"></span>,
-                    NO se encontró la página solicitada.
+        <div class="jumbotron bg-danger text-white">
+
+            <div class="text-center">
+                Los sentimos <span th:text="${#authentication.name}"></span>,
+                NO se encontró la página solicitada.
                 </h5>
                 <div class="py-3">
                     <a th:href="@{/}" class="btn btn-outline-light" role="button">Ir al inicio</a>
@@ -22,6 +21,6 @@
         </div>
 
         <!-- Footer -->
-        <footer th:replace="fragments :: footer"></footer>
+        <footer th:replace="fragments :: footer" th:classappend="fixed-bottom"></footer>
     </body>
 </html>

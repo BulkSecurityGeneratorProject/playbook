@@ -13,7 +13,8 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Arrays;
 
 @Aspect
-@Configuration // Sin esta anotacion no funciona
+@Configuration // Sin esta anotacion no funciona. Hay que anotar la clase como bean de alguna forma
+// Gracias a spring boot no hace falta @EnableAspectJAutoProxy, ya que su autoconfig busca los aspectos
 public class LoggingAspect {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());

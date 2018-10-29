@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -26,7 +25,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserDTO createUser(UserDTO userDTO) {
-        log.debug("Save user: {}", userDTO.toString());
         return (UserMapper.INSTANCE.toDto(userRepository.save(UserMapper.INSTANCE.toEntity(userDTO))));
 
     }
@@ -34,7 +32,13 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(readOnly = true)
     public List<UserDTO> getAll(){
-        log.debug("Request to get all users");
         return(UserMapper.INSTANCE.userToUserDTO(userRepository.findAll()));
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserDTO getById(Long id){
+        return(UserMapper.INSTANCE.toDto(userRepository.findById(id).orElse(null)));
+    }
+
 }

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <head th:insert="fragments :: common_header(~{::link}, ~{})">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+    </head>
+
+    <body class="fondo">
+        <header th:replace="fragments :: navbar"></header>
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6 mx-auto">
+
+                            <div class="card bg-light">
+                                <article class="card-body mx-auto" style="max-width: 400px;">
+                                    <h4 class="card-title mt-3 text-center">Crea una cuenta</h4>
+                                    <p class="text-center">Completa el siguiente formulario</p>
+                                    <hr/>
+                                    <form th:action="@{/usuarios/registro}" th:object="${user}" method="post">
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                            </div>
+                                            <input th:field="*{nombre}" class="form-control" placeholder="Nombre" type="text">
+                                        </div> <!-- form-group// -->
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                            </div>
+                                            <input th:field="*{apellidos}" class="form-control" placeholder="Apellidos" type="text">
+                                        </div> <!-- form-group// -->
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                            </div>
+                                            <input th:field="*{dni}" class="form-control" placeholder="Dni" type="text">
+                                        </div> <!-- form-group// -->
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                            </div>
+                                            <input th:field="*{email}" class="form-control" placeholder="Email" type="email">
+                                        </div> <!-- form-group// -->
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                            </div>
+                                            <input th:field="*{login}" class="form-control" placeholder="Login" type="text">
+                                        </div> <!-- form-group// -->
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                            </div>
+                                            <input th:field="*{password}" class="form-control" placeholder="Password" type="password">
+                                        </div> <!-- form-group// -->
+
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                            </div>
+                                            <input class="form-control" placeholder="Repite password" type="password">
+                                        </div> <!-- form-group// -->
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-block"> Crear cuenta  </button>
+                                        </div> <!-- form-group// -->
+                                        <p class="text-center">¿Ya tienes cuenta? <a href="@{/login}">Log In</a> </p>
+                                    </form>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer th:replace="fragments :: footer"></footer>
+    </body>
+</html>

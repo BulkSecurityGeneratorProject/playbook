@@ -36,4 +36,9 @@ public class HomeController {
     {
         return Optional.ofNullable(request.getHeader("Referer")).map(requestUrl -> "redirect:" + requestUrl);
     }
+
+    @GetMapping("/juegos")
+    public String prueba(){
+        return ("loginviejo");
+    }
 }

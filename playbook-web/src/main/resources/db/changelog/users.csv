@@ -1,4 +1,4 @@
-dni;login;password_hash;nombre;apellidos;email;activated
-02785463W;admin;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Juan;Martinez Guzman;juan@gmail.com;true
-12345678M;user;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;Lucia;Ramos Sanz;lucia@gmail.com;true
+id;dni;login;password_hash;nombre;apellidos;email;activated
+1;02785463W;admin;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Juan;Martinez Guzman;juan@gmail.com;true
+2;12345678M;user;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;Lucia;Ramos Sanz;lucia@gmail.com;true
 
