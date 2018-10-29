@@ -94,11 +94,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .getUserDetailsService();
     }
 
-    @Bean
-    public PrincipalExtractor githubPrincipalExtractor() {
-        return new GithubPrincipalExtractor();
-    }
-
     /*
     @SuppressWarnings("deprecation")
     @Bean

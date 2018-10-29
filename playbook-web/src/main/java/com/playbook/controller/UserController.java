@@ -12,10 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -36,6 +33,7 @@ public class UserController {
         this.messageSource = messageSource;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/usuarios")
     public String getUsers(Model model){
         List<UserDTO> users = userService.getAll();
@@ -56,15 +54,21 @@ public class UserController {
             flash.addFlashAttribute("error", "Se produjo un error durante el proceso de registro");
             return "redirect:/";
         }
-        user.setActivated(true);
-        user.setAuthorities(new HashSet<Authority>(Arrays.asList(new Authority(AuthoritiesConstants.USER))));
-        user = userService.createUser(user);
+        user = userService.registerUser(user);
         if(user.getId() > 0) {
             flash.addFlashAttribute("success", "Usuario registrado correctamente");
         }else{
             flash.addFlashAttribute("error", "Se produjo un error durante el proceso de registro");
         }
-        return "redirect:login";
+        return "redirect:/";
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/eliminar/{login}")
+    public String eliminar(@PathVariable(value = "login") String login, RedirectAttributes flash, Locale locale) {
+        userService.deleteUser(login);
+        flash.addFlashAttribute("success", "Usuario dado de baja correctamente");
+        return "redirect:/usuarios";
     }
 
 }

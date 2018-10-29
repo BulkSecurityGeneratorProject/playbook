@@ -40,6 +40,7 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
 
         // Si el usuario se ha authenticado mediante OAuth2, comprobamos si esta en la base de datos, y si no
         // le damos de alta de forma local para poder gestionarlo
+        /*
         if(authentication instanceof OAuth2Authentication) {
             LinkedHashMap<String, Object> details = (LinkedHashMap<String, Object>) ((OAuth2Authentication) authentication).getUserAuthentication().getDetails();
             String id = String.valueOf(details.get("id"));
@@ -59,7 +60,7 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
             }
             userService.createUser(user);
         }
-
+*/
         SessionFlashMapManager sessionFlashMapManager = new SessionFlashMapManager();
         FlashMap flashMap = new FlashMap();
         flashMap.put("success", "Bienvenido " + authentication.getName() + ". Inicio de sesion correcto");

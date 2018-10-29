@@ -19,36 +19,35 @@ import java.util.stream.Collectors;
 public class LoginService implements UserDetailsService {
 
     @Autowired
-    private UserRepository respository;
+    private UserRepository userRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(LoginService.class);
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User myUser = respository.findByLogin(login);
 
-        if(myUser == null) {
-            logger.error("User does not exists ".concat(login));
-            throw new UsernameNotFoundException("User does not exists ".concat(login));
-        }
+        UserDetails details = userRepository.findOneByLogin(login).map(myUser -> {
 
-        List<SimpleGrantedAuthority> roles = myUser.getAuthorities().stream().map(r -> {
-            return new SimpleGrantedAuthority(r.getName());
-        }).collect(Collectors.toList());
+            List<SimpleGrantedAuthority> roles = myUser.getAuthorities().stream().map(r -> {
+                return new SimpleGrantedAuthority(r.getName());
+            }).collect(Collectors.toList());
 
-        if(myUser.getAuthorities().isEmpty()) {
-            logger.error("User does not have any role");
-            throw new UsernameNotFoundException("User does not have any role ".concat(login));
-        }
+            if(myUser.getAuthorities().isEmpty()) {
+                logger.error("User does not have any role");
+                throw new UsernameNotFoundException("User does not have any role ".concat(login));
+            }
 
-        return new org.springframework.security.core.userdetails.User(
-                myUser.getLogin(),
-                myUser.getPassword(),
-                myUser.isActivated(),
-                true,
-                true,
-                true,
-                roles);
+            return new org.springframework.security.core.userdetails.User(
+                    myUser.getLogin(),
+                    myUser.getPassword(),
+                    myUser.isActivated(),
+                    true,
+                    true,
+                    true,
+                    roles);
+        }).orElseThrow(() -> new UsernameNotFoundException("User does not exists ".concat(login)));
+
+        return details;
     }
 }

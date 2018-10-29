@@ -9,9 +9,13 @@ public interface UserService {
 
     UserDTO createUser(UserDTO user);
 
+    UserDTO registerUser(UserDTO user);
+
     List<UserDTO> getAll();
 
     @Transactional(readOnly = true)
     UserDTO getById(Long id);
 
+    @Transactional
+    void deleteUser(String login);
 }

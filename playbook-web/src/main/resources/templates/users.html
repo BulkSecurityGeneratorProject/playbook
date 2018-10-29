@@ -32,7 +32,7 @@
                             <td th:text="${user.email}"></td>
                             <td th:text="${user.login}"></td>
                             <td class="text-center"><a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-outline-success btn-xs" th:href="@{/form/} + ${user.dni}" th:text="'Editar'"></a>
-                                <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-outline-danger btn-xs" th:href="@{/eliminar/} + ${user.dni}" th:text="'Eliminar'" onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
+                                <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-outline-danger btn-xs" th:href="@{/eliminar/} + ${user.login}" th:text="'Eliminar'" onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
 
                         </tr>
                         </tbody>
