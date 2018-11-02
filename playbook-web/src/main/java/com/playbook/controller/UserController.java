@@ -2,9 +2,9 @@ package com.playbook.controller;
 
 import com.playbook.dto.UserDTO;
 import com.playbook.entity.Authority;
+import com.playbook.error.exception.UserNotFoundException;
 import com.playbook.security.AuthoritiesConstants;
 import com.playbook.service.UserService;
-import liquibase.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.access.annotation.Secured;
@@ -18,11 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -58,7 +54,7 @@ public class UserController {
                 user = userService.createUser(user);
                 flash.addFlashAttribute("success", "Usuario creado correctamente!");
             }else{
-                user = userService.updateUser(user).orElseThrow(() -> new EntityNotFoundException());
+                user = userService.updateUser(user).orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
                 flash.addFlashAttribute("success", "Usuario modificado correctamente!");
             }
 

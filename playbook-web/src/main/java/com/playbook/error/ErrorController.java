@@ -1,22 +1,40 @@
 package com.playbook.error;
 
+import com.playbook.error.exception.UserNotFoundException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.ModelAndView;
 
-@ControllerAdvice(basePackages = {"com.playbook.controller"})
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
+
+@ControllerAdvice
 public class ErrorController {
-}
 
-/*
-@RestController
-public class ErrorController {
+    @ExceptionHandler(UserNotFoundException.class)
+    public ModelAndView handleUserNotFoundException(UserNotFoundException ex, HttpServletRequest request, HttpServletResponse response){
+        ErrorVM error = new ErrorVM(ex.getMessage(), "El usuario indicado no existe.");
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.getModel().put("error", error);
+        return modelAndView;
+    }
 
-    @RequestMapping(path = "/error")
-    public Map<String, Object> handle(HttpServletRequest request) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("status", request.getAttribute("javax.servlet.error.status_code"));
-        map.put("reason", request.getAttribute("javax.servlet.error.message"));
-        return map;
+    @ExceptionHandler(AccessDeniedException.class)
+    public ModelAndView handleAccessDeniedException(AccessDeniedException ex, HttpServletRequest request, HttpServletResponse response, Principal principal){
+        ErrorVM error = new ErrorVM("Acceso no autorizado", "Lo siento " + principal.getName() + ". No tienes permisos para acceder a este recurso.");
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.getModel().put("error", error);
+        return modelAndView;
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleException(Exception ex, HttpServletRequest request, HttpServletResponse response){
+        ErrorVM error = new ErrorVM("Error genérico", "Se produjo un error durante la operación.");
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.getModel().put("error", error);
+        return modelAndView;
     }
 }
- */
+

@@ -3,6 +3,7 @@ package com.playbook.service.impl;
 import com.playbook.dto.UserDTO;
 import com.playbook.entity.Authority;
 import com.playbook.entity.User;
+import com.playbook.error.exception.UserNotFoundException;
 import com.playbook.mapper.UserMapper;
 import com.playbook.repository.AuthorityRepository;
 import com.playbook.repository.UserRepository;
@@ -14,7 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(readOnly = true)
     public UserDTO findById(Long id){
-        return(UserMapper.INSTANCE.toDto(userRepository.findById(id).orElse(null)));
+        return(UserMapper.INSTANCE.toDto(userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"))));
     }
 
     @Override
@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
                             .map(auth -> authorityRepository.findById(auth.getName()))
                             .forEach(auth -> managedAuthorities.add(auth.get()));
                     return user;
-                }).orElseThrow(() -> new EntityNotFoundException());
+                }).orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
 
         return Optional.of(UserMapper.INSTANCE.toDto(userRepository.save(newUser)));
     }

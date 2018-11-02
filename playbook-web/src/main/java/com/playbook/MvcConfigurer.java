@@ -20,16 +20,6 @@ public class MvcConfigurer implements WebMvcConfigurer {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public WebMvcConfigurer controller403() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addViewControllers(ViewControllerRegistry registry) {
-                registry.addViewController("/error403").setViewName("error403");
-            }
-        };
-    }
-
     // Internacionalizacion
     @Bean
     public LocaleResolver localeResolver(){

@@ -42,7 +42,7 @@ public class LoginController {
             return "redirect:/";
         }
         if(error != null){
-            model.addAttribute("error", "Nombre de usuario o contraseña incorrectos");
+            model.addAttribute("fallo", "Nombre de usuario o contraseña incorrectos");
         }
 
         if(logout != null) {
@@ -61,14 +61,14 @@ public class LoginController {
     public String registerUser(@Valid UserDTO user, BindingResult result, Model model, Locale locale, RedirectAttributes flash) {
 
         if (result.hasErrors()) {
-            flash.addFlashAttribute("error", "Se produjo un error durante el proceso de registro");
+            flash.addFlashAttribute("fallo", "Se produjo un error durante el proceso de registro");
             return "redirect:/";
         }
         user = userService.registerUser(user);
         if(user.getId() > 0) {
             flash.addFlashAttribute("success", "Usuario registrado correctamente");
         }else{
-            flash.addFlashAttribute("error", "Se produjo un error durante el proceso de registro");
+            flash.addFlashAttribute("fallo", "Se produjo un error durante el proceso de registro");
         }
         return "redirect:/";
     }
