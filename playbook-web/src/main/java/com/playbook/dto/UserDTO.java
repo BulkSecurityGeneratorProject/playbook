@@ -3,16 +3,7 @@ package com.playbook.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.playbook.entity.Authority;
 import lombok.Data;
-import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.*;
-import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,4 +39,8 @@ public class UserDTO {
 
     @JsonIgnore
     private Set<Authority> authorities = new HashSet<>();
+
+    public boolean isNew() {
+        return (this.id == null);
+    }
 }

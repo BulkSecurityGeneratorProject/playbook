@@ -7,7 +7,7 @@
     <body class="fondo">
         <header th:replace="fragments :: navbar"></header>
 
-        <div class="container py-5 my-5">
+        <div class="container py-5">
             <div class="row">
                 <div class="col-md-12">
                     <table id="usuariosTabla" class="table">
@@ -31,15 +31,15 @@
                             <td th:text="${user.apellidos}"></td>
                             <td th:text="${user.email}"></td>
                             <td th:text="${user.login}"></td>
-                            <td class="text-center"><a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-outline-success btn-xs" th:href="@{/form/} + ${user.dni}" th:text="'Editar'"></a>
-                                <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-outline-danger btn-xs" th:href="@{/eliminar/} + ${user.login}" th:text="'Eliminar'" onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
+                            <td class="text-center"><a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-outline-success btn-xs" th:href="@{'/users/' + ${user.id} + '/update'}" th:text="'Editar'"></a>
+                                <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-outline-danger btn-xs" th:href="@{'/users/' + ${user.id} + '/delete'}" th:text="'Eliminar'" onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>
 
                         </tr>
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td colspan="7" style="text-align: left;">
-                                    <a class="btn btn-lg btn-block btn-primary" id="nuevoUsuario" th:text="'Nuevo Usuario'" th:href="@{/usuarios/crear}"/>
+                                    <a class="btn btn-lg btn-block btn-primary" id="nuevoUsuario" th:text="'Nuevo Usuario'" th:href="@{/users/add}"/>
                                 </td>
                             </tr>
 

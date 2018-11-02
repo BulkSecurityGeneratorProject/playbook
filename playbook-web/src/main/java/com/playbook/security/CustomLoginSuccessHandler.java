@@ -44,7 +44,7 @@ public class CustomLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
         if(authentication instanceof OAuth2Authentication) {
             LinkedHashMap<String, Object> details = (LinkedHashMap<String, Object>) ((OAuth2Authentication) authentication).getUserAuthentication().getDetails();
             String id = String.valueOf(details.get("id"));
-            UserDTO user = userService.getById(Long.valueOf(id));
+            UserDTO user = userService.findById(Long.valueOf(id));
             User user1 = new User();
             if (user == null) {
                 user = new UserDTO();

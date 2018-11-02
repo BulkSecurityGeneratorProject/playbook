@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:insert="fragments :: common_header(~{}, ~{})">
+    </head>
+
+    <body class="fondo">
+        <header th:replace="fragments :: navbar"></header>
+
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-8 bg-light mx-auto py-3">
+                    <h1>Perfil de <span th:text="${user.login}"></span></h1>
+                        <div class="panel panel-info">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3 col-lg-3 " align="center"></div>
+                                <div class=" col-md-9 col-lg-9 ">
+                                    <table class="table table-user-information">
+                                        <tbody>
+                                        <tr>
+                                            <td>Nombre:</td>
+                                            <td th:text="${user.nombre}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Apellidos:</td>
+                                            <td th:text="${user.apellidos}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dni</td>
+                                            <td th:text="${user.dni}"></td>
+                                        </tr>
+                                        <tr>
+                                        <tr>
+                                            <td>Roles</td>
+                                            <td th:text="${roles}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Estado</td>
+                                            <td th:text="${user.activated} ? 'Activado' : 'Desactivado'"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td><a href="mailto:info@support.com" th:text="${user.email}"></a></td>
+                                        </tr>
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <a th:href="@{/}" class="btn btn-primary mb-3" role="button">Ir al inicio</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--/container-->
+        <!-- Footer -->
+        <footer th:replace="fragments :: footer"></footer>
+    </body>
+</html>
