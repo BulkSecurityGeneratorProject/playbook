@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  playbook-rest:
+    build: ./playbook-rest
+    container_name: playbook-rest
+    ports:
+    - 8888:8888
+
+  playbook-web-mysql:
+    image: mysql:latest
+    container_name: playbook-web-mysql
+    environment:
+    - MYSQL_ROOT_PASSWORD=111111
+    - MYSQL_DATABASE=playbook
+    - MYSQL_USER=root
+    - MYSQL_PASSWORD=111111
+    ports:
+    - 13306:3306
+
+  playbook-web:
+    build: ./playbook-web
+    container_name: playbook-web
+    depends_on:
+    - playbook-web-mysql
+    - playbook-rest
+    ports:
+    - 8081:8081
+    environment:
+        - DATABASE_HOST=playbook-web-mysql
+        - DATABASE_USER=root
+        - DATABASE_PASSWORD=111111
+        - DATABASE_NAME=playbook
+        - DATABASE_PORT=3306
+    links:
+        - playbook-web-mysql
+        - playbook-rest

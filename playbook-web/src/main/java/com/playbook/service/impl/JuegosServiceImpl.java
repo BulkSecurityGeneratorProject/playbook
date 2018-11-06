@@ -8,12 +8,5 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class JuegosServiceImpl implements JuegosService{
 
-    private RestTemplate restTemplate;
-
-    @Autowired
-    public JuegosServiceImpl(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
-
 
 }
