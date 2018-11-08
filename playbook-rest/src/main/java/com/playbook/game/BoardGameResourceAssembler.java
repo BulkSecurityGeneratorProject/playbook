@@ -1,5 +1,6 @@
 package com.playbook.game;
 
+import com.playbook.game.v2.BoardGameResourceV2;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.stereotype.Component;
@@ -15,8 +16,8 @@ public class BoardGameResourceAssembler implements ResourceAssembler <BoardGameD
     @Override
     public Resource<BoardGameDTO> toResource(BoardGameDTO boardGameDTO) {
         return new Resource<>(boardGameDTO,
-                linkTo(methodOn(BoardGameResource.class).getBoardGame(boardGameDTO.getGameId())).withSelfRel(),
-                linkTo(methodOn(BoardGameResource.class).getAllBoardGame()).withRel("boardgames"));
+                linkTo(methodOn(BoardGameResourceV2.class).getBoardGame(boardGameDTO.getGameId())).withSelfRel(),
+                linkTo(methodOn(BoardGameResourceV2.class).getAllBoardGame()).withRel("boardgames"));
 
     }
 

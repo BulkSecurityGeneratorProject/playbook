@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:insert="fragments :: common_header(~{}, ~{})">
+    </head>
+
+    <body class="fondo">
+        <header th:replace="fragments :: navbar"></header>
+
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-12 bg-white">
+                    <span th:text="${games}"></span>
+                </div>
+                <!--/col-->
+            </div>
+            <!--/row-->
+        </div>
+        <!--/container-->
+        <!-- Footer -->
+        <footer th:replace="fragments :: footer"></footer>
+    </body>
+</html>
