@@ -23,7 +23,7 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
         log.error("Autenticacion fallida: " + e.getMessage());
         SessionFlashMapManager sessionFlashMapManager = new SessionFlashMapManager();
         FlashMap flashMap = new FlashMap();
-        flashMap.put("error", "Nombre de usuario o contraseña inválidos");
+        flashMap.put("fallo", e.getMessage());
         sessionFlashMapManager.saveOutputFlashMap(flashMap, httpServletRequest, httpServletResponse);
         httpServletResponse.sendRedirect("/login");
     }

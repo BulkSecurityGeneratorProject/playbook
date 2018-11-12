@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:insert="fragments :: common_header(~{}, ~{})">
+    </head>
+
+    <body class="fondo">
+        <header th:replace="fragments :: navbar"></header>
+
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-12 bg-light mx-auto py-3">
+                    <div class="panel-heading bg-dark text-white"><h1 class="p-5"> <span th:text="${game.nombre}"></span></h1></div>
+                    <div class="panel panel-info">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3 col-lg-3 " align="center">
+                                    <img th:src="${game.imagen}">
+                                </div>
+                                <div class=" col-md-9 col-lg-9 ">
+                                    <table class="table table-user-information">
+                                        <tbody>
+                                            <tr>
+                                                <td>Diseñador:</td>
+                                                <td th:text="${game.designer}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jugadores:</td>
+                                                <td th:text="${game.minPlayers} + '-' + ${game.maxPlayers}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Duración:</td>
+                                                <td th:text="${game.duracion} + ' minutos'"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Puntuacion:</td>
+                                                <td th:text="${game.puntuacion}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nº de votos:</td>
+                                                <td th:text="${game.votos}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Año de publicación</td>
+                                                <td th:text="${game.publicacion}"></td>
+                                            </tr>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <a th:href="@{/}" class="btn btn-primary mb-3" role="button">Ir al inicio</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--/container-->
+        <!-- Footer -->
+        <footer th:replace="fragments :: footer"></footer>
+    </body>
+</html>

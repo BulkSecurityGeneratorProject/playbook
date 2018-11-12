@@ -64,11 +64,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/static/**").permitAll()
                 .antMatchers("/css/**", "/vendor/**", "/js/**", "/img/**").permitAll()
-                .antMatchers("/",
-                                        "/index",
-                                        "/locale",
-                                        "/registro",
-                                        "/juegos/**").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/index").permitAll()
+                .antMatchers("/locale").permitAll()
+                .antMatchers("/registro").permitAll()
+                .antMatchers("/activate").permitAll()
+                .antMatchers("/juegos/**").permitAll()
                // .antMatchers("/usuarios/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().formLogin().successHandler(loginSuccessHandler()).loginPage("/login")

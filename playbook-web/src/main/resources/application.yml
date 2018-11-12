@@ -19,3 +19,23 @@ github:
     clientAuthenticationScheme: form
   resource:
     userInfoUri: https://api.github.com/user
+
+spring:
+   mail: # specific JHipster mail property, for standard properties see MailProperties
+          host: smtp.gmail.com
+          port: 587
+          username: pachorralamia@gmail.com
+          password: bitacora
+          protocol: smtp
+          tls: true
+          debug: true
+          properties.mail.smtp:
+              auth: true
+              starttls.enable: true
+              ssl.trust: smtp.gmail.com
+
+# Propiedades configuradas con ConfigProperties
+configuration:
+  mail:
+          from: playbook@gmail.com
+          base-url: http://localhost:8081

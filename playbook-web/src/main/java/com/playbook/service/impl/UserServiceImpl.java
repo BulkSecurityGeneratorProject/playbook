@@ -8,7 +8,9 @@ import com.playbook.mapper.UserMapper;
 import com.playbook.repository.AuthorityRepository;
 import com.playbook.repository.UserRepository;
 import com.playbook.security.AuthoritiesConstants;
+import com.playbook.service.MailService;
 import com.playbook.service.UserService;
+import com.playbook.service.util.RandomUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,35 +30,46 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private BCryptPasswordEncoder passwordEncoder;
     private AuthorityRepository authorityRepository;
+    private MailService mailService;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
                            BCryptPasswordEncoder passwordEncoder,
-                           AuthorityRepository authorityRepository) {
+                           AuthorityRepository authorityRepository,
+                           MailService mailService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
+        this.mailService = mailService;
+    }
+
+    private User saveUser(User user){
+        if(user.getPassword() != null){
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        user.setActivated(false);
+        user.setActivationKey(RandomUtil.generateActivationKey());
+        return userRepository.save(user);
     }
 
 
     @Override
     @Transactional
     public UserDTO createUser(UserDTO userDTO) {
-        if(userDTO.getPassword() != null){
-            userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        }
-        return (UserMapper.INSTANCE.toDto(userRepository.save(UserMapper.INSTANCE.toEntity(userDTO))));
-
+        return (UserMapper.INSTANCE.toDto(saveUser(UserMapper.INSTANCE.toEntity(userDTO))));
     }
 
     @Override
     @Transactional
     public UserDTO registerUser(UserDTO userDTO) {
-        userDTO.setActivated(true);
         Set<Authority> authorities = new HashSet<>(1);
         authorities.add(authorityRepository.findById(AuthoritiesConstants.USER).get());
         userDTO.setAuthorities(authorities);
-        return (createUser(userDTO));
+        // Registramos el nuevo usuario
+        User user = saveUser(UserMapper.INSTANCE.toEntity(userDTO));
+        // Enviamos el maill de activacion
+        mailService.sendActivationEmail(user);
+        return UserMapper.INSTANCE.toDto(user);
     }
 
     @Override
@@ -109,6 +122,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findByLogin(String login) {
         return(UserMapper.INSTANCE.toDto(userRepository.findOneByLogin(login).orElse(null)));
+    }
+
+    @Override
+    public Optional<UserDTO> activateRegistration(String key) {
+        log.debug("Activating user for activation key {}", key);
+        User activatedUser = userRepository.findOneByActivationKey(key)
+                .map(user -> {
+                    // activate given user for the registration key.
+                    user.setActivated(true);
+                    user.setActivationKey(null);
+                    log.debug("Activated user: {}", user);
+                    return user;
+                }).orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
+
+        User newUser = userRepository.save(activatedUser);
+        return Optional.of(UserMapper.INSTANCE.toDto(newUser));
     }
 
 }

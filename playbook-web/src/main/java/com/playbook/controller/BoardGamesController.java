@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 @Controller
 public class BoardGamesController {
 
@@ -20,15 +22,16 @@ public class BoardGamesController {
 
     @GetMapping("/juegos")
     public String showAllGames(Model model){
-        Resources<Resource<BoardGameDTO>> games = boardGameService.findAll();
+        List<BoardGameDTO> games = boardGameService.findAll();
         model.addAttribute("games", games);
         return ("games/list");
     }
 
     @GetMapping("/juegos/{id}")
-    public String showAllGames(@PathVariable Long id, Model model){
-        Resource<BoardGameDTO> games = boardGameService.findOne(id);
-        model.addAttribute("games", games);
-        return ("games/list");
+    public String showGame(@PathVariable("id") long id, Model model){
+        BoardGameDTO game = boardGameService.findOne(id);
+        model.addAttribute("game", game);
+        return ("games/detail");
     }
+
 }

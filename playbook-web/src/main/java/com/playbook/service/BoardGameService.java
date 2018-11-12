@@ -7,11 +7,13 @@ import org.springframework.hateoas.Resources;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface BoardGameService {
-    @Transactional(readOnly = true)
-    Resources<Resource<BoardGameDTO>> findAll();
 
     @Transactional(readOnly = true)
-    Resource<BoardGameDTO> findOne(Long id);
+    List<BoardGameDTO> findAll();
+
+    @Transactional(readOnly = true)
+    BoardGameDTO findOne(Long id);
 }

@@ -1,10 +1,9 @@
 package com.playbook.controller;
 
 import com.playbook.dto.UserDTO;
+import com.playbook.service.MailService;
 import com.playbook.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +22,8 @@ import java.util.Locale;
 @Controller
 public class LoginController {
 
-    private UserService userService;
-    private MessageSource messageSource;
+    private final UserService userService;
+    private final MessageSource messageSource;
 
     @Autowired
     public LoginController(UserService userService, MessageSource messageSource) {
@@ -65,8 +64,9 @@ public class LoginController {
             return "redirect:/";
         }
         user = userService.registerUser(user);
+
         if(user.getId() > 0) {
-            flash.addFlashAttribute("success", "Usuario registrado correctamente");
+            flash.addFlashAttribute("success", "Usuario registrado correctamente! Recibirá un correo para activar su cuenta");
         }else{
             flash.addFlashAttribute("fallo", "Se produjo un error durante el proceso de registro");
         }

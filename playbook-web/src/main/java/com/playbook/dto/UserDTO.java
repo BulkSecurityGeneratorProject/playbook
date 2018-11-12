@@ -3,7 +3,10 @@ package com.playbook.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.playbook.entity.Authority;
 import lombok.Data;
+
+import javax.persistence.Column;
 import javax.validation.constraints.*;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 

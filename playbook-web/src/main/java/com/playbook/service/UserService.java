@@ -28,4 +28,6 @@ public interface UserService {
     List<Authority> findAllAuthorities();
 
     UserDTO findByLogin(String login);
+
+    Optional<UserDTO> activateRegistration(String key);
 }

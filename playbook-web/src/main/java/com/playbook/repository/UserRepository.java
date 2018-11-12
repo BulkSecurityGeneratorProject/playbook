@@ -10,4 +10,5 @@ public interface UserRepository extends JpaRepository<User, Long>{
 
     Optional<User> findOneByLogin(String login);
 
+    Optional<User> findOneByActivationKey(String key);
 }

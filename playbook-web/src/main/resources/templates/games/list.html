@@ -9,8 +9,37 @@
 
         <div class="container py-5">
             <div class="row">
-                <div class="col-md-12 bg-white">
-                    <span th:text="${games}"></span>
+                <div class="col-md-12">
+                    <table id="usuariosTabla" class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>Id</th>
+                            <th></th>
+                            <th>Nombre</th>
+                            <th>Puntuacion</th>
+                            <th>Votos</th>
+                            <th>Publicacion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="game : ${games}" class="table-light">
+                            <td class="text-center"><a th:text="${game.gameId}" th:href="@{/juegos/} + ${game.gameId}"></a></td>
+                            <td><img th:src="${game.thumbnail}"></td>
+                            <td th:text="${game.nombre}"></td>
+                            <td th:text="${game.puntuacion}"></td>
+                            <td th:text="${game.votos}"></td>
+                            <td th:text="${game.publicacion}"></td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7" style="text-align: left;">
+                                <a class="btn btn-lg btn-block btn-primary" id="nuevoUsuario" th:text="'Nuevo Usuario'" th:href="@{/users/add}"/>
+                            </td>
+                        </tr>
+
+                        </tfoot>
+                    </table>
                 </div>
                 <!--/col-->
             </div>

@@ -70,7 +70,7 @@ public class UserController {
         // Buscamos los roles para mostrarlos por pantalla
         model.addAttribute("roles", userService.findAllAuthorities());
         model.addAttribute("user", user);
-        return new ModelAndView("/users/userform", model);
+        return new ModelAndView("users/userform", model);
     }
 
     // Muestra el formulario de modificacion de usuario obteniendo el usuario actualmente logado
@@ -81,14 +81,14 @@ public class UserController {
         // Buscamos los roles para mostrarlos por pantalla
         model.addAttribute("roles", userService.findAllAuthorities());
         model.addAttribute("user", user);
-        return new ModelAndView("/users/userform", model);
+        return new ModelAndView("users/userform", model);
     }
 
     // Muestra formulario para crear un usuario
     @Secured(AuthoritiesConstants.ADMIN)
     @RequestMapping(value = "/users/add", method = RequestMethod.GET)
     public ModelAndView showAddUserForm() {
-        return new ModelAndView("/users/userform", "user", new UserDTO());
+        return new ModelAndView("users/userform", "user", new UserDTO());
     }
 
     @Secured("ROLE_ADMIN")
