@@ -17,11 +17,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -135,9 +133,7 @@ public class UserServiceImpl implements UserService {
                     log.debug("Activated user: {}", user);
                     return user;
                 }).orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
-
-        User newUser = userRepository.save(activatedUser);
-        return Optional.of(UserMapper.INSTANCE.toDto(newUser));
+        return Optional.of(UserMapper.INSTANCE.toDto(userRepository.save(activatedUser)));
     }
 
 }

@@ -55,15 +55,26 @@ public class MailService {
     }
 
     @Async
-    public void sendActivationEmail(User user) {
-        log.debug("Sending activation e-mail to '{}'", user.getEmail());
+    public void sendEmailFromTemplate(User user, String templateName, String titleKey) {
         Locale locale = new Locale("es", "ES");
         Context context = new Context(locale);
         context.setVariable(USER, user);
         context.setVariable(BASE_URL, configProperties.getMail().getBaseUrl());
-        String content = templateEngine.process("mails/activationEmail.html", context);
-        String subject = messageSource.getMessage("email.activation.title", null, locale);
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
         sendEmail(user.getEmail(), subject, content, false, true);
+    }
+
+    @Async
+    public void sendActivationEmail(User user) {
+        log.debug("Sending activation email to '{}'", user.getEmail());
+        sendEmailFromTemplate(user, "mails/activationEmail.html", "email.activation.title");
+    }
+
+    @Async
+    public void sendPasswordResetMail(User user) {
+        log.debug("Sending password reset email to '{}'", user.getEmail());
+        sendEmailFromTemplate(user, "mails/passwordResetEmail.html", "email.reset.title");
     }
 
 }

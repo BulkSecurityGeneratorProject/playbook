@@ -30,4 +30,5 @@ public interface UserService {
     UserDTO findByLogin(String login);
 
     Optional<UserDTO> activateRegistration(String key);
+
 }

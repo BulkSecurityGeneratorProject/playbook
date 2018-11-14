@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:insert="fragments :: common_header(~{}, ~{})">
+    </head>
+
+    <body class="fondo">
+        <header th:replace="fragments :: navbar"></header>
+
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-8 bg-light mx-auto  py-3">
+                    <div class="playbook-white-box">
+                        <div class="playbook-white-box-header">
+                            <h2 class="playbook-white-box-header-title">
+                                <span th:text="'Restablecer su contraseña'">Restablecer su contraseña</span>
+                            </h2>
+                        </div>
+                        <div class="alert alert-warning" th:text="'Introduzca el email que utilizó para registrarse'">
+                            Introduzca el email que utilizó para registrarse.
+                        </div>
+
+                        <form  name="form" role="form" method="post" th:action="@{/password/reset/init}">
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Su correo electrónico" required>
+                            </div>
+                            <div class="row justify-content-center">
+                                <button type="submit" class="btn btn-primary">Reset</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--/container-->
+        <!-- Footer -->
+        <footer th:replace="fragments :: footer"></footer>
+    </body>
+</html>
