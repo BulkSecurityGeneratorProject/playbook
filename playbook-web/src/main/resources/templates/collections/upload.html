@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:insert="fragments :: common_header(~{}, ~{})">
+    </head>
+
+    <body class="fondo">
+        <header th:replace="fragments :: navbar"></header>
+
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-8 bg-light mx-auto  py-3">
+                    <div class="playbook-white-box">
+                        <div class="playbook-white-box-header">
+                            <h2 class="playbook-white-box-header-title">
+                                <span th:text="'Sube un fichero csv con juegos para tu coleccion'">Sube un fichero CSV con juegos para tu coleccion</span>
+                            </h2>
+                        </div>
+                        <form method="post" enctype="multipart/form-data" th:action="@{/collections/upload}">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="inputGroupFile04" lang="es" accept=".csv" name="file">
+                                    <label class="custom-file-label" for="inputGroupFile04">Elegir archivo</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">Aceptar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/container-->
+        <!-- Footer -->
+        <footer th:replace="fragments :: footer"></footer>
+    </body>
+    <!-- Necesitamos esto para mostrar el nombre del archivo seleccionado -->
+    <script>
+        $('#inputGroupFile04').on('change',function(){
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+    </script>
+</html>

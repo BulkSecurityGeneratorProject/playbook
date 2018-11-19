@@ -71,6 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/activate").permitAll()
                 .antMatchers("/juegos/**").permitAll()
                 .antMatchers("/password/**").permitAll()
+                .antMatchers("/collections/**").permitAll()
                // .antMatchers("/usuarios/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().formLogin().successHandler(loginSuccessHandler()).loginPage("/login")

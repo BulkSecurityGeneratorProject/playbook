@@ -39,6 +39,15 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/juegos}">Juegos</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Coleccion
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Mi coleccion</a>
+                                <a class="dropdown-item" th:href="@{/collections/upload}">Subir juegos</a>
+                            </div>
+                        </li>
                     </ul>
                     <ul class="navbar-nav navbar-right">
                         <li sec:authorize="!isAuthenticated()"><a
@@ -88,7 +97,7 @@
     </header>
 
 </body>
-<footer class="py-3 bg-dark">
+<footer class="py-3 bg-dark fixed-bottom">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; José González Sánchez 2018</p>
     </div>
