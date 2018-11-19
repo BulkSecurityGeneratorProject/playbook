@@ -1,5 +1,6 @@
 package com.playbook.controller;
 
+import com.google.common.base.Preconditions;
 import com.playbook.service.FileService;
 import org.springframework.batch.core.JobParametersInvalidException;
 import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
@@ -30,6 +31,7 @@ public class CollectionController {
     @PostMapping("/collections/upload")
     public String uploadCSVFile(@RequestPart("file") MultipartFile file,
                                 RedirectAttributes flash) throws Exception {
+        Preconditions.checkNotNull(file, "No se cargó el archivo correctamente");
         fileService.loadFile(file);
         flash.addFlashAttribute("success", "Fichero cargado correctamente!");
         return("redirect:/");

@@ -1,5 +1,6 @@
 package com.playbook.controller;
 
+import com.google.common.base.Verify;
 import com.playbook.dto.UserDTO;
 import com.playbook.service.MailService;
 import com.playbook.service.UserService;
@@ -59,17 +60,10 @@ public class LoginController {
     @RequestMapping(value = "/registro", method = RequestMethod.POST)
     public String registerUser(@Valid UserDTO user, BindingResult result, Model model, Locale locale, RedirectAttributes flash) {
 
-        if (result.hasErrors()) {
-            flash.addFlashAttribute("fallo", "Se produjo un error durante el proceso de registro");
-            return "redirect:/";
-        }
+        Verify.verify(result.hasErrors(), "Se produjo un error durante el proceso de registro");
         user = userService.registerUser(user);
-
-        if(user.getId() > 0) {
-            flash.addFlashAttribute("success", "Usuario registrado correctamente! Recibirá un correo para activar su cuenta");
-        }else{
-            flash.addFlashAttribute("fallo", "Se produjo un error durante el proceso de registro");
-        }
+        Verify.verify(user.getId() > 0, "Se produjo un error durante el proceso de registro");
+        flash.addFlashAttribute("success", "Usuario registrado correctamente! Recibirá un correo para activar su cuenta");
         return "redirect:/";
     }
 }

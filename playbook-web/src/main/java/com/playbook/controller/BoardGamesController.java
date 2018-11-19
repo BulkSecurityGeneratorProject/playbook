@@ -1,5 +1,6 @@
 package com.playbook.controller;
 
+import com.google.common.base.Preconditions;
 import com.playbook.dto.BoardGameDTO;
 import com.playbook.service.BoardGameService;
 import org.springframework.hateoas.Resource;
@@ -29,6 +30,7 @@ public class BoardGamesController {
 
     @GetMapping("/juegos/{id}")
     public String showGame(@PathVariable("id") long id, Model model){
+        Preconditions.checkNotNull(id, "No se encontro el usuario");
         BoardGameDTO game = boardGameService.findOne(id);
         model.addAttribute("game", game);
         return ("games/detail");

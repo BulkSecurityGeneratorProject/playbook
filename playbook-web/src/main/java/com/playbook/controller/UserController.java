@@ -1,5 +1,6 @@
 package com.playbook.controller;
 
+import com.google.common.base.Preconditions;
 import com.playbook.dto.UserDTO;
 import com.playbook.entity.Authority;
 import com.playbook.error.exception.UserNotFoundException;
@@ -66,6 +67,7 @@ public class UserController {
     // Muestra formulario modificacion usuario
     @RequestMapping(value = "/users/{id}/update", method = RequestMethod.GET)
     public ModelAndView showUpdateUserForm(@PathVariable("id") long id, ModelMap model) {
+        Preconditions.checkArgument(id > 0, "Id de usuario incorrecto");
         UserDTO user = userService.findById(id);
         // Buscamos los roles para mostrarlos por pantalla
         model.addAttribute("roles", userService.findAllAuthorities());
@@ -94,6 +96,7 @@ public class UserController {
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/users/{id}/delete")
     public String deleteUser(@PathVariable("id") long id, RedirectAttributes flash) {
+        Preconditions.checkArgument(id > 0, "Id de usuario incorrecto");
         userService.deleteUser(id);
         flash.addFlashAttribute("success", "Usuario dado de baja correctamente");
         return "redirect:/users";
@@ -102,7 +105,7 @@ public class UserController {
     // Muestra detalle de usuario
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     public String showUser(@PathVariable("id") long id, Model model, RedirectAttributes flash) {
-
+        Preconditions.checkArgument(id > 0, "Id de usuario incorrecto");
         UserDTO user = userService.findById(id);
         if (user == null) {
             flash.addFlashAttribute("error", "Usuario no encontrado");

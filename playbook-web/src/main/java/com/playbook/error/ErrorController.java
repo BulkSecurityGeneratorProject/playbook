@@ -30,6 +30,23 @@ public class ErrorController {
         return modelAndView;
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ModelAndView handleIllegalArgumentException(IllegalArgumentException ex, HttpServletRequest request, HttpServletResponse response){
+        ErrorVM error = new ErrorVM("Parametro invalido", ex.getMessage());
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.getModel().put("error", error);
+        return modelAndView;
+    }
+
+    @ExceptionHandler(NullPointerException.class)
+    public ModelAndView handleNullPointerException(NullPointerException ex, HttpServletRequest request, HttpServletResponse response){
+        ErrorVM error = new ErrorVM("Valor nulo", ex.getMessage());
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.getModel().put("error", error);
+        return modelAndView;
+    }
+
+
     @ExceptionHandler(AccessDeniedException.class)
     public ModelAndView handleAccessDeniedException(AccessDeniedException ex, HttpServletRequest request, HttpServletResponse response, Principal principal){
         ErrorVM error = new ErrorVM("Acceso no autorizado", "Lo siento " + principal.getName() + ". No tienes permisos para acceder a este recurso.");
