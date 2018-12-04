@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:insert="fragments :: common_header(~{::link}, ~{})">
+        <link th:href="@{/css/chat.css}" rel="stylesheet" />
+    </head>
+
+    <body class="fondo">
+        <header th:replace="fragments :: navbar"></header>
+
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="username-page">
+                        <div class="username-page-container">
+                            <h2 class="pb-3">Escribe tu nombre</h2>
+                            <form id="usernameForm" name="usernameForm">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="accent username-submit btn btn-warning">Empieza a chatear</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="chat-page" class="hidden">
+                        <div class="chat-container">
+                            <div class="chat-header">
+                                <h2>Playbook Chat</h2>
+                            </div>
+                            <div class="connecting">
+                                Conectando...
+                            </div>
+                            <ul id="messageArea">
+
+                            </ul>
+                            <form id="messageForm" name="messageForm" nameForm="messageForm">
+                                <div class="form-group">
+                                    <div class="input-group clearfix">
+                                        <input type="text" id="message" placeholder="Escribe un mensaje..." autocomplete="off" class="form-control"/>
+                                        <button type="submit" class="primary btn btn-warning">Send</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--/col-->
+            </div>
+            <!--/row-->
+        </div>
+        <!--/container-->
+        <!-- Footer -->
+        <footer th:replace="fragments :: footer"></footer>
+
+        <!-- Cargamos sock.js and stomp.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+        <script th:src="@{/js/chat.js}"></script>
+    </body>
+</html>
