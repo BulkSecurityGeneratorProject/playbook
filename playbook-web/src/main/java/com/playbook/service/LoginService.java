@@ -1,6 +1,5 @@
 package com.playbook.service;
 
-import com.playbook.entity.User;
 import com.playbook.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

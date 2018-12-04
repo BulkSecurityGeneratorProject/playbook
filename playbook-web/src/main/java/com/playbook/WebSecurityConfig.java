@@ -1,13 +1,12 @@
 package com.playbook;
 
-import com.playbook.entity.User;
-import com.playbook.repository.UserRepository;
-import com.playbook.security.*;
+import com.playbook.security.CustomAccessDeniedHandler;
+import com.playbook.security.CustomAuthenticationFailureHandler;
+import com.playbook.security.CustomLoginSuccessHandler;
+import com.playbook.security.CustomLogoutSuccessHandler;
 import com.playbook.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.PrincipalExtractor;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -21,7 +20,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
@@ -38,7 +36,6 @@ import org.springframework.web.filter.CompositeFilter;
 import javax.servlet.Filter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 // Con estas dos anotaciones desactivamos la configuracion de seguridad por defecto
 @Configuration

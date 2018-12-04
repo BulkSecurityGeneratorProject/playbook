@@ -60,7 +60,7 @@ public class LoginController {
     @RequestMapping(value = "/registro", method = RequestMethod.POST)
     public String registerUser(@Valid UserDTO user, BindingResult result, Model model, Locale locale, RedirectAttributes flash) {
 
-        Verify.verify(result.hasErrors(), "Se produjo un error durante el proceso de registro");
+        Verify.verify(!result.hasErrors(), "Se produjo un error durante el proceso de registro");
         user = userService.registerUser(user);
         Verify.verify(user.getId() > 0, "Se produjo un error durante el proceso de registro");
         flash.addFlashAttribute("success", "Usuario registrado correctamente! Recibirá un correo para activar su cuenta");
