@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:insert="fragments :: common_header(~{}, ~{})">
+</head>
+
+<body class="fondo">
+<header th:replace="fragments :: navbar"></header>
+
+<div class="container py-5 my-5">
+    <div class="row">
+        <div class="col-md-12 bg-light">
+            <form th:action="@{/messages/send}" role="form" autocomplete="off" id="formMessages" method="POST">
+                <div class="input-group mb-9">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Usuarios</span>
+                    </div>
+                    <select class="form-control selectpicker" id="usuario" name="usuario" data-style="btn-warning">
+                        <option th:each="login : ${usuarios}"
+                                th:value="${login}"
+                                th:text="${login}"></option>
+                    </select>
+                </div>
+                <div class="input-group mb-9">
+                    <div class="form-group">
+                        <label for="mensaje">Escribe tu mensaje:</label>
+                        <textarea class="form-control rounded-0" id="mensaje" rows="10"></textarea>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
+</div>
+<!--/container-->
+<!-- Footer -->
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>
