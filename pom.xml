@@ -14,5 +14,6 @@
     <modules>
         <module>playbook-rest</module>
         <module>playbook-web</module>
+		<module>playbook-amqp</module>
     </modules>
 </project>

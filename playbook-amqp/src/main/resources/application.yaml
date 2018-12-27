@@ -1,0 +1,7 @@
+spring:
+  rabbitmq:
+    username: guest
+    password: guest
+    # aqui hay que poner el nombre del contenedor y no localhost, OJO!
+    host: rabbitmq
+    port: 5672

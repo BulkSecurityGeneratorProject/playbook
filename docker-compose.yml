@@ -7,10 +7,25 @@ services:
     ports:
     - 8888:8888
 
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  playbook-amqp:
+      build: ./playbook-amqp
+      container_name: playbook-amqp
+      depends_on:
+      - rabbitmq
+      ports:
+      - 8085:8085
+
   playbook-web-mysql:
     image: mysql:latest
     container_name: playbook-web-mysql
-    restart: on-failure
+    #restart: on-failure
     environment:
     - MYSQL_ROOT_PASSWORD=111111
     - MYSQL_DATABASE=playbook
@@ -22,7 +37,7 @@ services:
   playbook-web:
     build: ./playbook-web
     container_name: playbook-web
-    restart: on-failure
+    #restart: on-failure
     depends_on:
     - playbook-web-mysql
     - playbook-rest
@@ -38,3 +53,4 @@ services:
     links:
         - playbook-web-mysql
         - playbook-rest
+        - playbook-amqp

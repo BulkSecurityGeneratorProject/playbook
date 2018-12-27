@@ -1,4 +1,4 @@
-package com.playbook;
+package com.playbook.amqp;
 
 import com.playbook.amqp.MessageConsumer;
 import org.springframework.amqp.core.*;

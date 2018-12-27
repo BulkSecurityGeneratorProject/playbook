@@ -1,7 +1,13 @@
 package com.playbook.vm;
 
-/**
- * Created by Jose Gonzalez on 10/12/2018.
- */
-public class MailMessage {
+import lombok.Data;
+
+import java.io.Serializable;
+
+@Data
+public class QueueMessage implements Serializable{
+
+    private String remitente;
+    private String destinatario;
+    private String texto;
 }

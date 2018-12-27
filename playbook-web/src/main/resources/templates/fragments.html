@@ -51,6 +51,15 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/chat}">Chat</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarMensajes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Mensajes
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarMensajes">
+                                <a class="dropdown-item" th:href="@{/messages/1/enviar}">Enviar mensaje</a>
+                                <a class="dropdown-item" th:href="@{/messages/1/recibir}">Mensajes recibidos</a>
+                            </div>
+                        </li>
                     </ul>
                     <ul class="navbar-nav navbar-right">
                         <li sec:authorize="!isAuthenticated()"><a

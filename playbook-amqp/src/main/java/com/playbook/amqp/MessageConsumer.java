@@ -1,4 +1,4 @@
-package com.playbook;
+package com.playbook.amqp;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

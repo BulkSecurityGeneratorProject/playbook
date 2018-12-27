@@ -71,6 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/collections/**").permitAll()
                 .antMatchers("/chat/**").permitAll()
                 .antMatchers("/ws/**").permitAll()
+                .antMatchers("/messages/**").permitAll()
                // .antMatchers("/usuarios/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().formLogin().successHandler(loginSuccessHandler()).loginPage("/login")

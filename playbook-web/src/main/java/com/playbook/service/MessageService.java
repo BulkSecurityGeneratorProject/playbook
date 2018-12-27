@@ -1,7 +1,12 @@
 package com.playbook.service;
 
-/**
- * Created by Jose Gonzalez on 10/12/2018.
- */
-public class MessageService {
+
+import com.playbook.vm.ChatMessage;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+public interface MessageService {
+    @Transactional(readOnly = true)
+    List<ChatMessage> findUserMessages(Long id);
 }
